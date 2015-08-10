@@ -1,1 +1,2 @@
 # codegym-problems
+* SetZero

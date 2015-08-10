@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.Assert.assertArrayEquals;
+
 @RunWith(Parameterized.class)
 public class MatrixSnakeTraversalTest extends AbstractTest {
 
@@ -20,7 +22,7 @@ public class MatrixSnakeTraversalTest extends AbstractTest {
     public void run() {
       int[] actual = new MatrixSnakeTraversal().print(input);
       if (!expected.equals(actual)) {
-        Assert.assertEquals(error(Common.printArray(actual)), expected, actual);
+        assertArrayEquals(error(Common.printArray(actual)), expected, actual);
       }
     }
   };

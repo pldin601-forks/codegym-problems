@@ -6,13 +6,9 @@ import java.util.TreeMap;
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println(Integer.MAX_VALUE);
-
-    for (int i = 0; i < 26; i++) {
-      System.out.print((char)('A'+i));
-    }
-    new TreeMap<String, Integer>(Collections.reverseOrder());
-    new ArrayList<String>(new HashSet<String>());
+    int[] a = new int[] {1, 2};
+    int[] b = new int[] {1, 2};
+    System.out.println(a.equals(b));
   }
 
 }

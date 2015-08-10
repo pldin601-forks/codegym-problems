@@ -18,7 +18,8 @@ public abstract class AbstractTest {
       String msg = e.toString();
       msg = Common.hasError(msg) ? msg : Common.error(msg);
 
-      fail(msg);
+      System.err.println(msg);
+      System.exit(-1);
     } catch (Throwable t) {
       //t.printStackTrace();
       StackTraceElement[] stackTrace = t.getStackTrace();
@@ -34,7 +35,8 @@ public abstract class AbstractTest {
       }
       buf.append(lastInput());
 
-      fail(Common.error(buf.toString()));
+      System.err.println(Common.error(buf.toString()));
+      System.exit(-1);
     }
   }
 
