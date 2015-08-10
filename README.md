@@ -1,4 +1,5 @@
 # codegym-problems
+
 * SetZero
-CountBits
-ReverseBits
+* CountBits
+* ReverseBits
