@@ -15,7 +15,7 @@ public abstract class AbstractTest {
       await().atMost(1, TimeUnit.SECONDS).catchUncaughtExceptions().until(getTask());
     } catch (ConditionTimeoutException e) {
 
-      String msg = e.toString();
+      String msg = "Timeout Error\n" + lastInput();
       msg = Common.hasError(msg) ? msg : Common.error(msg);
 
       System.err.println(msg);

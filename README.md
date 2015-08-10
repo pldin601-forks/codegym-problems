@@ -3,3 +3,4 @@
 * SetZero
 * CountBits
 * ReverseBits
+* MathPow
