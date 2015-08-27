@@ -11,12 +11,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class CountBitsTest extends AbstractTest {
 
-  static Set<String> classes = new HashSet<>();
-
-  static {
-    classes.add("CountBits");
-  }
-
   Runnable task = new Runnable() {
     @Override
     public void run() {
@@ -30,6 +24,7 @@ public class CountBitsTest extends AbstractTest {
   private int expected;
 
   public CountBitsTest(int input, int expected) {
+    super("CountBits");
     this.input = input;
     this.expected = expected;
   }
@@ -56,16 +51,13 @@ public class CountBitsTest extends AbstractTest {
   }
 
   @Override
-  protected Set<String> getTestClasses() {
-    return classes;
-  }
-
-  @Override
   protected String lastInput() {
     return new StringBuilder()
         .append("Input: ")
         .append(input)
-        .append("\nExpected: ")
+        .append(" (")
+        .append(Common.toBinaryString(input))
+        .append(")\nExpected: ")
         .append(expected)
         .toString();
   }

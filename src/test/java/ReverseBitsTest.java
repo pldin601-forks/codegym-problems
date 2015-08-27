@@ -11,12 +11,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class ReverseBitsTest extends AbstractTest {
 
-  static Set<String> classes = new HashSet<>();
-
-  static {
-    classes.add("ReverseBits");
-  }
-
   Runnable task = new Runnable() {
     @Override
     public void run() {
@@ -30,6 +24,7 @@ public class ReverseBitsTest extends AbstractTest {
   private int expected;
 
   public ReverseBitsTest(int input, int expected) {
+    super("ReverseBits");
     this.input = input;
     this.expected = expected;
   }
@@ -53,16 +48,13 @@ public class ReverseBitsTest extends AbstractTest {
   }
 
   @Override
-  protected Set<String> getTestClasses() {
-    return classes;
-  }
-
-  @Override
   protected String lastInput() {
     return new StringBuilder()
         .append("Input: ")
         .append(input)
-        .append("\nExpected: ")
+        .append(" (")
+        .append(Common.toBinaryString(input))
+        .append(")\nExpected: ")
         .append(expected)
         .toString();
   }

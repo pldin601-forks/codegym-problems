@@ -5,38 +5,34 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class AbcNumberTest extends AbstractTest {
+public class AddNumberBase36Test extends AbstractTest {
 
-  String input;
-  int expected;
+  String inputOne;
+  String inputTwo;
+  String expected;
+
   Runnable task = new Runnable() {
     @Override
     public void run() {
-      int actual = new AbcNumber().convert(input);
-      if (actual != expected) {
+      String actual = new AddNumberBase36().add(inputOne, inputTwo);
+      if (Common.different(expected, actual)) {
         Common.assertEquals(error(String.valueOf(actual)), expected, actual);
       }
     }
   };
 
-  public AbcNumberTest(String input, int expected) {
-    super("AbcNumber");
-    this.input = input;
+  public AddNumberBase36Test(String inputOne, String inputTwo, String expected) {
+    super("AddNumberBase36");
+    this.inputOne = inputOne;
+    this.inputTwo = inputTwo;
     this.expected = expected;
   }
 
-  //abcdefghij
-  //0123456789
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
     return Arrays.asList(new Object[][]{
-        {"d", 3},
-        {"abc", 12},
-        {"bjij", 1989},
-        {"hh", 77},
-        {"aaaaaaaaaaaaaaaaaaaa", 0},
-        {"hgb", 761},
-        {"cbeheidgeh", 2147483647},
+        {"9", "1", "a"},
+        {"9", "1", "a"},
     });
   }
 
@@ -49,9 +45,12 @@ public class AbcNumberTest extends AbstractTest {
   protected String lastInput() {
     return new StringBuilder()
         .append("Input: \"")
-        .append(input)
-        .append("\"\nExpected: ")
+        .append(inputOne)
+        .append("\", \"")
+        .append(inputTwo)
+        .append("\"\nExpected: \"")
         .append(expected)
+        .append('"')
         .toString();
   }
 }

@@ -1,6 +1,7 @@
 import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.junit.Test;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -9,21 +10,29 @@ import static org.junit.Assert.fail;
 
 public abstract class AbstractTest {
 
+  Set<String> classes = new HashSet<>();
+
+  protected AbstractTest(String classOne, String ...classes) {
+    this.classes.add(classOne);
+    for (String clazz : classes) {
+      this.classes.add(clazz);
+    }
+  }
+
   @Test
   public void test() {
     try {
       await().atMost(1, TimeUnit.SECONDS).catchUncaughtExceptions().until(getTask());
     } catch (ConditionTimeoutException e) {
 
-      String msg = "Timeout Error\n" + lastInput();
-      msg = Common.hasError(msg) ? msg : Common.error(msg);
+      String msg = e.toString();
+      msg = Common.hasError(msg) ? msg : Common.error("Timeout Error\n" + lastInput());
 
       System.err.println(msg);
       System.exit(-1);
     } catch (Throwable t) {
       //t.printStackTrace();
       StackTraceElement[] stackTrace = t.getStackTrace();
-      Set<String> classes = getTestClasses();
       StringBuilder buf = new StringBuilder();
 
       buf.append(t.fillInStackTrace()).append('\n');
@@ -41,8 +50,6 @@ public abstract class AbstractTest {
   }
 
   protected abstract Runnable getTask();
-
-  protected abstract Set<String> getTestClasses();
 
   protected abstract String lastInput();
 

@@ -10,11 +10,6 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class MathPowTest extends AbstractTest {
-  private static Set<String> classes = new HashSet<>();
-
-  static {
-    classes.add("MathPow");
-  }
 
   int base;
   int exp;
@@ -30,6 +25,7 @@ public class MathPowTest extends AbstractTest {
   };
 
   public MathPowTest(int base, int exp, int expected) {
+    super("MathPow");
     this.base = base;
     this.exp = exp;
     this.expected = expected;
@@ -49,11 +45,6 @@ public class MathPowTest extends AbstractTest {
   @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    return classes;
   }
 
   @Override

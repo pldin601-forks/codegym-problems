@@ -1,7 +1,9 @@
-public class Main {
+public class  Main {
 
   public static void main(String[] args) {
-    System.out.println(0b01000000000000000000000000000000);
+    for (int i = 0; i < 26; i++) {
+      System.out.print((char)('a'+i));
+    }
   }
 
 }

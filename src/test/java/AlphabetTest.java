@@ -5,38 +5,37 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class AbcNumberTest extends AbstractTest {
+public class AlphabetTest extends AbstractTest {
 
   String input;
-  int expected;
+  boolean expected;
   Runnable task = new Runnable() {
     @Override
     public void run() {
-      int actual = new AbcNumber().convert(input);
+      boolean actual = new Alphabet().check(input);
       if (actual != expected) {
         Common.assertEquals(error(String.valueOf(actual)), expected, actual);
       }
     }
   };
 
-  public AbcNumberTest(String input, int expected) {
-    super("AbcNumber");
+  public AlphabetTest(String input, boolean expected) {
+    super("Alphabet");
     this.input = input;
     this.expected = expected;
   }
 
-  //abcdefghij
-  //0123456789
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
     return Arrays.asList(new Object[][]{
-        {"d", 3},
-        {"abc", 12},
-        {"bjij", 1989},
-        {"hh", 77},
-        {"aaaaaaaaaaaaaaaaaaaa", 0},
-        {"hgb", 761},
-        {"cbeheidgeh", 2147483647},
+        {"", false},
+        {"abcdefghijklmnopqrstuvwxyz", true},
+        {"abcdeFghijKlmnopqrstuvwxyz", true},
+        {"abcdefghijklmnopqrstuvwxyy", false},
+        {"a1234   bcdefghi  jklmnopqrstuvwxyy", false},
+        {"a1234   bcdefghi z jklmnopqrstuvwxy", true},
+        {Common.generateFrom("abcdefghijklmnopqrstuvwxy", 1<<25), false},
+        {Common.generateFrom("abcdefghijklmnopqrstuvwxyz", 1<<25), true},
     });
   }
 
@@ -49,7 +48,7 @@ public class AbcNumberTest extends AbstractTest {
   protected String lastInput() {
     return new StringBuilder()
         .append("Input: \"")
-        .append(input)
+        .append(Common.print(input))
         .append("\"\nExpected: ")
         .append(expected)
         .toString();

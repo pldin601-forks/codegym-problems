@@ -11,9 +11,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class PositiveAverageNumberTest extends AbstractTest {
 
-  static Set<String> classes = new HashSet<String>() {{
-    add("PositiveAverageNumber");
-  }};
   int firstArg, secondArg, expected;
   Runnable task = new Runnable() {
     @Override
@@ -26,6 +23,7 @@ public class PositiveAverageNumberTest extends AbstractTest {
   };
 
   public PositiveAverageNumberTest(int firstArg, int secondArg, int expected) {
+    super("PositiveAverageNumber");
     this.firstArg = firstArg;
     this.secondArg = secondArg;
     this.expected = expected;
@@ -45,11 +43,6 @@ public class PositiveAverageNumberTest extends AbstractTest {
   @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    return classes;
   }
 
   @Override

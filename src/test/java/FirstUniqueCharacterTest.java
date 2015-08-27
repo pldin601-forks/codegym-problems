@@ -26,7 +26,7 @@ public class FirstUniqueCharacterTest extends AbstractTest {
   };
 
   public FirstUniqueCharacterTest(String input, Character expected) {
-
+    super("FirstUniqueCharacter");
     this.input = input;
     this.expected = expected;
   }
@@ -65,13 +65,6 @@ public class FirstUniqueCharacterTest extends AbstractTest {
   @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    Set<String> classes = new HashSet<>();
-    classes.add("FirstUniqueCharacter");
-    return classes;
   }
 
   @Override

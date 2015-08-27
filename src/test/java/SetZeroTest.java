@@ -12,12 +12,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class SetZeroTest extends AbstractTest {
 
-  static Set<String> classes = new HashSet<>();
-
-  static {
-    classes.add("SetZero");
-  }
-
   Runnable task = new Runnable() {
     @Override
     public void run() {
@@ -32,6 +26,7 @@ public class SetZeroTest extends AbstractTest {
   private int expected;
 
   public SetZeroTest(int input, int index, int expected) {
+    super("SetZero");
     this.input = input;
     this.index = index;
     this.expected = expected;
@@ -59,17 +54,19 @@ public class SetZeroTest extends AbstractTest {
   }
 
   @Override
-  protected Set<String> getTestClasses() {
-    return classes;
-  }
-
-  @Override
   protected String lastInput() {
     return new StringBuilder()
         .append("Input: ")
         .append(input)
+        .append(" (")
+        .append(Common.toBinaryString(input))
+        .append("), ")
+        .append(index)
         .append("\nExpected: ")
         .append(expected)
+        .append(" (")
+        .append(Common.toBinaryString(expected))
+        .append(")")
         .toString();
   }
 }

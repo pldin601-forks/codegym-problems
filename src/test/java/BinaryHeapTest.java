@@ -34,6 +34,7 @@ public class BinaryHeapTest extends AbstractTest {
   private int size;
 
   public BinaryHeapTest(int size) {
+    super("BinaryHeap");
     this.size = size;
   }
 
@@ -60,12 +61,5 @@ public class BinaryHeapTest extends AbstractTest {
         .append(size)
         .append(") poll() all")
         .toString();
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    Set<String> classes = new HashSet<>();
-    classes.add("BinaryHeap");
-    return classes;
   }
 }

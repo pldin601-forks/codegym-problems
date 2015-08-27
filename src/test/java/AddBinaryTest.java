@@ -3,11 +3,6 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import static java.lang.String.format;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class AddBinaryTest extends AbstractTest {
@@ -16,18 +11,14 @@ public class AddBinaryTest extends AbstractTest {
   final static String bits1M = generateBits(20);
   String firstArg;
   String secondArg;
-  String expectedResult;
+  String expected;
   Runnable task = new Runnable() {
     @Override
     public void run() {
       String actual = new AddBinary().add(firstArg, secondArg);
 
-      if (!expectedResult.equals(actual)) {
-        String message = format(
-            "Input: [\"%s\", \"%s\"],\n Expected: \"%s\",\n Actual: \"%s\"",
-            firstArg, secondArg, expectedResult, actual);
-        message = Common.error(message);
-        assertEquals(message, expectedResult, actual);
+      if (!expected.equals(actual)) {
+        Common.assertEquals(error(String.valueOf(actual)), expected, actual);
       }
     }
   };
@@ -35,11 +26,11 @@ public class AddBinaryTest extends AbstractTest {
   public AddBinaryTest(
       String firstArg,
       String secondArg,
-      String expectedResult) {
-
+      String expected) {
+    super("AddBinary");
     this.firstArg = firstArg;
     this.secondArg = secondArg;
-    this.expectedResult = expectedResult;
+    this.expected = expected;
   }
 
   @Parameterized.Parameters
@@ -77,16 +68,9 @@ public class AddBinaryTest extends AbstractTest {
   }
 
   @Override
-  protected Set<String> getTestClasses() {
-    Set<String> classes = new HashSet<>();
-    classes.add("AddBinary");
-    return classes;
-  }
-
-  @Override
   protected String lastInput() {
     return new StringBuilder()
-        .append("TimeOutError\nInput: \"")
+        .append("Input: \"")
         .append(firstArg).append("\", \"")
         .append(secondArg).append("\"")
         .toString();

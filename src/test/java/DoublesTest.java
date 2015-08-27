@@ -30,6 +30,7 @@ public class DoublesTest extends AbstractTest {
   private double delta = 0.000001d;
 
   public DoublesTest(String input, Double expected) {
+    super("Doubles");
     this.input = input;
     this.expected = expected;
   }
@@ -52,13 +53,6 @@ public class DoublesTest extends AbstractTest {
   @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    Set<String> classes = new HashSet<>();
-    classes.add("Doubles");
-    return classes;
   }
 
   @Override

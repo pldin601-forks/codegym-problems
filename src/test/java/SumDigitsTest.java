@@ -30,6 +30,7 @@ public class SumDigitsTest extends AbstractTest {
   };
 
   public SumDigitsTest(int input, int expected) {
+    super("SumDigits");
     this.input = input;
     this.expected = expected;
   }
@@ -50,13 +51,6 @@ public class SumDigitsTest extends AbstractTest {
   @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    Set<String> classes = new HashSet<>();
-    classes.add("SumDigits");
-    return classes;
   }
 
   @Override

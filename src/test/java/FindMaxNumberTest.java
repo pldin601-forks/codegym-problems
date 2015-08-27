@@ -10,9 +10,6 @@ import java.util.Set;
 @RunWith(Parameterized.class)
 public class FindMaxNumberTest extends AbstractTest {
 
-  static Set<String> classes = new HashSet<String>() {{
-    add("FindMaxNumber");
-  }};
   int[] input;
   int expected;
   Runnable task = new Runnable() {
@@ -26,6 +23,7 @@ public class FindMaxNumberTest extends AbstractTest {
   };
 
   public FindMaxNumberTest(int[] input, int expected) {
+    super("FindMaxNumber");
     this.input = input;
     this.expected = expected;
   }
@@ -55,11 +53,6 @@ public class FindMaxNumberTest extends AbstractTest {
   @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    return classes;
   }
 
   @Override

@@ -14,9 +14,6 @@ public class FirstOddNumberTest extends AbstractTest {
 
   int[] input;
   int expected;
-  static Set<String> classes = new HashSet<String>() {{
-    add("FirstOddNumber");
-  }};
   Runnable task = new Runnable() {
     @Override
     public void run() {
@@ -53,6 +50,7 @@ public class FirstOddNumberTest extends AbstractTest {
   }
 
   public FirstOddNumberTest(int[] input, int expected) {
+    super("FirstOddNumber");
     this.input = input;
     this.expected = expected;
   }
@@ -60,11 +58,6 @@ public class FirstOddNumberTest extends AbstractTest {
   @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    return classes;
   }
 
   @Override

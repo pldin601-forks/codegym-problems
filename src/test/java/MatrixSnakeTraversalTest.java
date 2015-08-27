@@ -1,33 +1,27 @@
-import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.Assert.assertArrayEquals;
 
 @RunWith(Parameterized.class)
 public class MatrixSnakeTraversalTest extends AbstractTest {
 
+
   int[][] input;
   int[] expected;
-  static Set<String> classes = new HashSet<String>() {{
-    add("MatrixSnakeTraversal");
-  }};
   Runnable task = new Runnable() {
     @Override
     public void run() {
       int[] actual = new MatrixSnakeTraversal().print(input);
       if (!expected.equals(actual)) {
-        assertArrayEquals(error(Common.printArray(actual)), expected, actual);
+        Common.assertEquals(error(Common.printArray(actual)), expected, actual);
       }
     }
   };
 
   public MatrixSnakeTraversalTest(int[][] input, int[] expected) {
+    super("MatrixSnakeTraversal");
     this.input = input;
     this.expected = expected;
   }
@@ -45,19 +39,14 @@ public class MatrixSnakeTraversalTest extends AbstractTest {
             {7, 8, 9},
             {10, 11, 12},
         }, new int[]{1, 4, 7, 10, 11, 8, 5, 2, 3, 6, 9, 12}},
-        {new int[][] { {1}, {2}, {3}}, new int[] {1, 2, 3}},
-        {new int[][] { {1, 2, 3}}, new int[] {1, 2, 3}},
+        {new int[][]{{1}, {2}, {3}}, new int[]{1, 2, 3}},
+        {new int[][]{{1, 2, 3}}, new int[]{1, 2, 3}},
     });
   }
 
-    @Override
+  @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    return classes;
   }
 
   @Override

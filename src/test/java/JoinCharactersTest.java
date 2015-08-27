@@ -11,9 +11,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class JoinCharactersTest extends AbstractTest {
 
-  static Set<String> classes = new HashSet<String>() {{
-    add("JoinCharacters");
-  }};
   char[] input;
   int expected;
   Runnable task = new Runnable() {
@@ -39,6 +36,7 @@ public class JoinCharactersTest extends AbstractTest {
   }
 
   public JoinCharactersTest(char[] input, int expected) {
+    super("JoinCharacters");
     this.input = input;
     this.expected = expected;
   }
@@ -46,11 +44,6 @@ public class JoinCharactersTest extends AbstractTest {
   @Override
   protected Runnable getTask() {
     return task;
-  }
-
-  @Override
-  protected Set<String> getTestClasses() {
-    return classes;
   }
 
   @Override
