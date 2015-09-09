@@ -140,14 +140,22 @@ public class Common {
       int len = Math.max(1, (int) (Math.random() * wLen));
 
       for (int j = 0; j < len; j++) {
-        char c = (char) ('a' + (i+j) % 26);
+        char c = (char) ('a' + (i + j) % 26);
         res.append(c);
       }
-      res.append(delimiters.charAt(i%delimiters.length()));
+      res.append(delimiters.charAt(i % delimiters.length()));
     }
-    for (int i = res.length(); i < minLength; i++ ) {
-      res.append(delimiters.charAt(i%delimiters.length()));
+    for (int i = res.length(); i < minLength; i++) {
+      res.append(delimiters.charAt(i % delimiters.length()));
     }
     return res.toString();
+  }
+
+  public static void fail(String message) {
+    Assert.fail(error(message));
+  }
+
+  public static void assertCondition(boolean condition, String message) {
+    if (!condition) fail(message);
   }
 }
