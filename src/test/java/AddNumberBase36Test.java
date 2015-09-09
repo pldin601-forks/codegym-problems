@@ -33,6 +33,12 @@ public class AddNumberBase36Test extends AbstractTest {
     return Arrays.asList(new Object[][]{
         {"9", "1", "a"},
         {"9", "1", "a"},
+        {"A", "1", "b"},
+        {"z", "1", "10"},
+        {"10", "z", "1z"},
+        {"10", "a0", "b0"},
+        {"vjz5", "q3N", "wa2s"},
+        {"zjfghfhdsdfathjjhgjhghjfjfjhjhdsrreqqklhu456hfz5", "wsfgsgds56346263fgfhghfghfhgfsrr5476hjfgdhdhg3N", "10g7vy7xrkildxnlpkvzwxy0uzwyyzx6kiwixx24xahmjyw2s"},
     });
   }
 

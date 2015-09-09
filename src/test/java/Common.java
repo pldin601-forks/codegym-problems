@@ -1,7 +1,5 @@
 import org.junit.Assert;
 
-import static org.junit.Assert.assertEquals;
-
 public class Common {
 
   public static final String START = "[codegym-test]";
@@ -62,8 +60,8 @@ public class Common {
 
   public static String toBinaryString(int num) {
     StringBuilder buf = new StringBuilder();
-    for (int i = 31; i >=0; i--) {
-      char c = ((num & (1<< i)) != 0) ? '1': '0';
+    for (int i = 31; i >= 0; i--) {
+      char c = ((num & (1 << i)) != 0) ? '1' : '0';
       buf.append(c);
     }
     return buf.toString();
@@ -85,12 +83,11 @@ public class Common {
     Assert.assertEquals(msg, o1, o2);
   }
 
-
   public static String print(String input) {
     if (input != null && input.length() > 1000) {
-      return input.substring(0, 997) + "...";
+      return input.substring(0, 997).replace("\n", "\\n") + "...";
     }
-    return input;
+    return input.replace("\n", "\\n");
   }
 
   public static String generateFrom(String abc, int size) {
@@ -122,13 +119,35 @@ public class Common {
   public static int[] repeatedRandomNumbers(int repeat, int size, int unique) {
     int[] res = new int[size];
     int i = 0;
-    int salt = (int)(Math.random()*(size/repeat));
+    int salt = (int) (Math.random() * (size / repeat));
     for (int j = 0; j < repeat; j++) {
-      for (int k = 0; k < size/repeat; k++) {
+      for (int k = 0; k < size / repeat; k++) {
         res[i++] = k + salt;
       }
     }
-    res[res.length-1] = unique;
+    res[res.length - 1] = unique;
     return res;
+  }
+
+  public static String generateSentence(int words, int minLength) {
+    StringBuilder res = new StringBuilder();
+    int wLen = Math.max(minLength / (words + 1), 1);
+    String delimiters = " .,?!@#$%^&*()_+=-~";
+    System.out.println(wLen);
+    System.out.println(minLength);
+
+    for (int i = 0; i < words; i++) {
+      int len = Math.max(1, (int) (Math.random() * wLen));
+
+      for (int j = 0; j < len; j++) {
+        char c = (char) ('a' + (i+j) % 26);
+        res.append(c);
+      }
+      res.append(delimiters.charAt(i%delimiters.length()));
+    }
+    for (int i = res.length(); i < minLength; i++ ) {
+      res.append(delimiters.charAt(i%delimiters.length()));
+    }
+    return res.toString();
   }
 }
