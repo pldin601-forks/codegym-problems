@@ -1,35 +1,50 @@
-public class FibNode<E extends Comparable<E>> implements Comparable<FibNode<E>> {
 
-  E key;
+public class FibNode {
+  int key = 0;
   int rank;
-  FibNode<E> prev;
-  FibNode<E> next;
-  FibNode<E> parent;
-  FibNode<E> child;
-
+  FibNode prev;
+  FibNode next;
+  FibNode parent = null;
+  FibNode child = null;
   boolean isMarked;
   boolean isMinimum;
 
   public FibNode() {
-    this.key = null;
+    this.key = 0;
   }
 
-  public FibNode(E key) {
+  public FibNode(int key) {
     this.key = key;
     this.next = this;
     this.prev = this;
     rank = 0;
   }
 
-  public E getKey() {
+  public int getKey() {
     return key;
   }
 
-  public void setKey(E key) {
+  public void setKey(int key) {
     this.key = key;
   }
 
-  public int compareTo(FibNode<E> that) {
-    return this.key.compareTo(that.key);
+  public String printNode(int level) {
+    StringBuilder sb = new StringBuilder();
+
+    FibNode current = this;
+    do {
+      sb.append("Node: ")
+          .append(current.key)
+          .append("  Lev: ")
+          .append(level)
+          .append(" ");
+      if (current.child != null) {
+        sb.append("\n")
+            .append(current.child.printNode(++level));
+        level--;
+      }
+      current = current.next;
+    } while (current != this);
+    return sb.toString();
   }
 }

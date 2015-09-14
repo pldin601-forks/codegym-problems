@@ -73,6 +73,9 @@ public class AddBinaryTest extends AbstractTest {
         .append("Input: \"")
         .append(firstArg).append("\", \"")
         .append(secondArg).append("\"")
+        .append("\nExpected: \"")
+        .append(expected)
+        .append('"')
         .toString();
   }
 }

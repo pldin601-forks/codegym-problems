@@ -1,26 +1,12 @@
-/**
- * class FibNode {
- *
- * }
- */
 
 public class FibonacciHeap {
 
-
-
-  public FibNode insert(int num) {
+  public FibNode insert(int key) {
     return null;
   }
 
-  public FibNode minNode() {
-    return null;
+  public FibNode getMinNode() {
+    return new FibNode();
   }
 
-  public int min() {
-    return 0;
-  }
-
-  public String print() {
-    return "{node: 1}";
-  }
 }
