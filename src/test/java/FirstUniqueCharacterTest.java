@@ -71,7 +71,7 @@ public class FirstUniqueCharacterTest extends AbstractTest {
   protected String lastInput() {
     return new StringBuilder()
         .append("Input: \"")
-        .append(input)
+        .append(Common.print(input))
         .append("\"\nExpected: \"")
         .append(expected)
         .append('"')

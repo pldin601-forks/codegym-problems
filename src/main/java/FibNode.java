@@ -9,10 +9,6 @@ public class FibNode {
   boolean isMarked;
   boolean isMinimum;
 
-  public FibNode() {
-    this.key = 0;
-  }
-
   public FibNode(int key) {
     this.key = key;
     this.next = this;
@@ -28,23 +24,27 @@ public class FibNode {
     this.key = key;
   }
 
+  public String printNode() {
+    return printNode(0);
+  }
+
   public String printNode(int level) {
     StringBuilder sb = new StringBuilder();
 
     FibNode current = this;
     do {
-      sb.append("Node: ")
+      sb.append("{Node: ")
           .append(current.key)
           .append("  Lev: ")
           .append(level)
           .append(" ");
+
       if (current.child != null) {
         sb.append("\n")
-            .append(current.child.printNode(++level));
-        level--;
+            .append(current.child.printNode(level + 1));
       }
       current = current.next;
     } while (current != this);
-    return sb.toString();
+    return sb.append('}').toString();
   }
 }

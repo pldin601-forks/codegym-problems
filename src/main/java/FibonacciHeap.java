@@ -6,7 +6,7 @@ public class FibonacciHeap {
   }
 
   public FibNode getMinNode() {
-    return new FibNode();
+    return new FibNode(0);
   }
 
 }

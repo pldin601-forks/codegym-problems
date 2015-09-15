@@ -6,13 +6,12 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static com.jayway.awaitility.Awaitility.await;
-import static org.junit.Assert.fail;
 
 public abstract class AbstractTest {
 
   Set<String> classes = new HashSet<>();
 
-  protected AbstractTest(String classOne, String ...classes) {
+  protected AbstractTest(String classOne, String... classes) {
     this.classes.add(classOne);
     for (String clazz : classes) {
       this.classes.add(clazz);
@@ -54,13 +53,12 @@ public abstract class AbstractTest {
   protected abstract String lastInput();
 
   protected String error(String actual) {
-    return new StringBuilder()
-        .append(Common.START)
+    return Common.error(
+        new StringBuilder()
         .append(lastInput())
         .append("\nActual: \"")
         .append(actual)
         .append('"')
-        .append(Common.END)
-        .toString();
+        .toString());
   }
 }

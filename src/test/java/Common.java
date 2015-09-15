@@ -44,7 +44,7 @@ public class Common {
 
   public static StringBuilder printChars(char[] input, StringBuilder buf) {
     buf.append('[');
-    int minLen = Math.min(1000, input.length);
+    int minLen = Math.min(100, input.length);
     for (int i = 0; i < minLen; i++) {
       buf.append('\'').append(input[i]).append("', ");
     }
@@ -84,8 +84,10 @@ public class Common {
   }
 
   public static String print(String input) {
-    if (input != null && input.length() > 1000) {
-      return input.substring(0, 997).replace("\n", "\\n") + "...";
+    if (input != null && input.length() > 100) {
+      return String.format("[length:%d] ", input.length()) +
+          input.substring(0, 97).replace("\n", "\\n")
+          + "...";
     }
     return input.replace("\n", "\\n");
   }
@@ -152,7 +154,7 @@ public class Common {
   }
 
   public static void fail(String message) {
-    Assert.fail(error(message));
+    Assert.fail(message);
   }
 
   public static void assertCondition(boolean condition, String message) {
