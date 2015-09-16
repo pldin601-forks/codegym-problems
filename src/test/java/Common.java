@@ -1,5 +1,8 @@
 import org.junit.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Common {
 
   public static final String START = "[codegym-test]";
@@ -159,5 +162,13 @@ public class Common {
 
   public static void assertCondition(boolean condition, String message) {
     if (!condition) fail(message);
+  }
+
+  public static <T> List<T> list(T... elements) {
+    List<T> res = new ArrayList<>(elements.length);
+    for (T element : elements) {
+      res.add(element);
+    }
+    return res;
   }
 }
